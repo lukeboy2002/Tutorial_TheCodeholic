@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-class HomeController extends Controller
+class HelloController extends Controller
 {
-    public function index()
+    public function welcome()
     {
-        return view('home.index', [
+        return view('hello.welcome', [
             'name' => 'Antoine',
             'surname' => 'Hendriks',
         ]);
