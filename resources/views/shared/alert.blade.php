@@ -1,1 +1,0 @@
-<p @style([ 'background-color: '. $bgcolor, 'color: '.$color])>{{$text}}</p>
