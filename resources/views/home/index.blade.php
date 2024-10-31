@@ -1,9 +1,5 @@
 <x-app-layout title="Home Page">
-    @php
-        $color = 'pink';
-        $bgColor = 'yellow';
-    @endphp
-            <!-- Home Slider -->
+    <!-- Home Slider -->
     <section class="hero-slider">
         <!-- Carousel wrapper -->
         <div class="hero-slides">
@@ -102,8 +98,4 @@
         </section>
         <!--/ New Cars -->
     </main>
-    <x-slot:footerLinks>
-        <a href="#">Link 3</a>
-        <a href="#">Link 4</a>
-    </x-slot:footerLinks>
 </x-app-layout>
