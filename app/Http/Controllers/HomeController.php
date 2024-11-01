@@ -2,27 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Car;
-use App\Models\CarType;
+use App\Models\User;
 
 class HomeController extends Controller
 {
     public function index()
     {
 //        $car = Car::find(1);
-//        $carType = CarType::where('name', 'sedan')->first();
-////        dd($carType->cars);
-//        $cars = Car::whereBelongsTo($carType)->get();
-//        dd($cars);
+//        dd($car->favouredUsers);
 
-        $car = Car::find(1);
-        $carType = CarType::where('name', 'sedan')->first();
+//        $user = User::find(1);
+//        dd($user->favouriteCars);
 
-//        $car->car_type_id = $carType->id;
-//        $car->save();
+        $user = User::find(1);
 
-        $car->carType()->associate($carType);
-        $car->save();
+// Add cars with IDs 1, 2, and 3 into favourites
+//        $user->favouriteCars()->attach([1, 2, 3]);
+
+// Add cars with IDs 1, 2, and 3 into favourites, but delete all others
+//        $user->favouriteCars()->sync([3]);
+
+// If you want to provide pivot table additional values
+//        $user->favouriteCars()->syncWithPivotValues([1, 2, 3], ['column1' => 'value1']);
+//        $user = User::find(1);
+//        $user->favouriteCars()->detach([3]);
+//        $user->favouriteCars()->detach();
+
 
         return view('home.index');
     }
