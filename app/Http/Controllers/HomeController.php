@@ -2,32 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-
 class HomeController extends Controller
 {
     public function index()
     {
-//        $car = Car::find(1);
-//        dd($car->favouredUsers);
+//        $maker = Maker::factory(10)->create();
 
-//        $user = User::find(1);
-//        dd($user->favouriteCars);
+//        Maker::factory(5)
+//            ->hasModels(5)
+//            ->create();
 
-        $user = User::find(1);
+//        Model::factory()
+//            ->count(5)
+//            ->forMaker()
+//    ->forMaker(['name' => 'Toyota']) // This will create 5 models for Toyota maker
+//            ->create();
+//
+//        Model::factory()
+//            ->count(5)
+//            ->for(Maker::factory()->state(['name' => 'Toyota']), 'carMaker')
+//            ->create();
+//
+//        $maker = Maker::factory()->create();
+//        Model::factory()
+//            ->count(5)
+//            ->for($maker)
+//            ->create();
 
-// Add cars with IDs 1, 2, and 3 into favourites
-//        $user->favouriteCars()->attach([1, 2, 3]);
+        User::factory()
+            ->has(Car::factory()->count(5), 'favouriteCars')
+            ->create();
 
-// Add cars with IDs 1, 2, and 3 into favourites, but delete all others
-//        $user->favouriteCars()->sync([3]);
-
-// If you want to provide pivot table additional values
-//        $user->favouriteCars()->syncWithPivotValues([1, 2, 3], ['column1' => 'value1']);
-//        $user = User::find(1);
-//        $user->favouriteCars()->detach([3]);
-//        $user->favouriteCars()->detach();
-
+//        User::factory()
+//            ->hasAttached(Car::factory()->count(5), 'favouriteCars')
+//            ->create();
 
         return view('home.index');
     }

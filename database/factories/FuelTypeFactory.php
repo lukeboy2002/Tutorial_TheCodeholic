@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\FuelType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\FuelType>
+ * @extends Factory<FuelType>
  */
 class FuelTypeFactory extends Factory
 {
@@ -17,7 +18,7 @@ class FuelTypeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->randomElement(['Gas', 'Gasoline', 'Diesel', 'Electric', 'Hybrid']),
         ];
     }
 }
