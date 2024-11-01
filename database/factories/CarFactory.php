@@ -28,7 +28,9 @@ class CarFactory extends Factory
             'maker_id' => Maker::inRandomOrder()->first()->id,
             'model_id' => function(array $attributes) {
                 return Model::where('maker_id', $attributes['maker_id'])
-                    ->inRandomOrder()->first()->id;
+                    ->inRandomOrder()
+                    ->first()
+                    ->id;
             },
             'year' => fake()->year(),
             'price' => ((int)fake()->randomFloat(2, 5, 100)) * 1000,
@@ -43,8 +45,7 @@ class CarFactory extends Factory
                 return User::find($attributes['user_id'])->phone;
             },
             'description' => fake()->text(2000),
-            'published_at' => fake()->optional(0.9)
-                ->dateTimeBetween('-1 month', '+1 day')
+            'published_at' => fake()->optional(0.9)->dateTimeBetween('-1 month', '+1 day')
         ];
     }
 }
