@@ -3,40 +3,34 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
-use App\Models\CarFeatures;
+use App\Models\CarImage;
 
 class HomeController extends Controller
 {
     public function index()
     {
-//        $car = Car::find(1);
+        $car = Car::find(1);
 
-//        dd($car->primaryImage, $car->features);
+        //Create new image
+//        $image = new CarImage(['image_path' => 'something', 'position' =>2]);
+//        $car->images()->save($image);
 
-//        $car->features->abs = 0;
-//        $car->features->save();
+//        $car->images()->create(['image_path' => 'something2', 'position' =>3]);
 
-//        $car->features->update(['abs' => 1]);
-//        $car->primaryImage->delete();
-
-        $car = Car::find(2);
-
-        $carFeatures = new CarFeatures([
-            'abs' => false,
-            'air_conditioning' => false,
-            'power_windows' => false,
-            'power_door_locks' => false,
-            'cruise_control' => false,
-            'bluetooth_connectivity' => false,
-            'remote_start' => false,
-            'gps_navigation' => false,
-            'heated_seats' => false,
-            'climate_control' => false,
-            'rear_parking_sensors' => false,
-            'leather_seats' => false,
+        // Attach multiple images to $car
+        $car->images()->saveMany([
+            new CarImage(['image_path' => 'something3', 'position' => 4]),
+            new CarImage(['image_path' => 'something4', 'position' => 5]),
         ]);
-        $car->features()->save($carFeatures);
-        
+
+// the same as above
+        $car->images()->createMany([
+            ['image_path' => 'something5', 'position' => 6],
+            ['image_path' => 'something6', 'position' => 7],
+        ]);
+//        dd($car->images);
+
+
         return view('home.index');
     }
 }

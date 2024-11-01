@@ -5,6 +5,7 @@ namespace App\Models;
 use Database\Factories\CarFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -44,5 +45,10 @@ class Car extends Model
     public function primaryImage(): HasOne
     {
         return $this->hasOne(CarImage::class)->oldestOfMany('position');
+    }
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(CarImage::class);
     }
 }
