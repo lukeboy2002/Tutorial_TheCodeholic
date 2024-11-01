@@ -3,74 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use App\Models\CarFeatures;
 
 class HomeController extends Controller
 {
     public function index()
     {
-//        $cars = Car::get();
-//        $cars = Car::where('published_at', '!=', null)->get();
-//        $car = Car::where('published_at', '!=', null)->first();
-//        $cars = Car::where('published_at','!=', null)
-//            ->where('user_id', 1)
-//            ->orderBy('published_at', 'desc')
-//            ->limit(2)
-//            ->get();
-//        dump($cars);
-
-        $carData = [
-            'maker_id' => 1,
-            'model_id' => 1,
-            'year' => 2024,
-            'price' => 20000,
-            'vin' => '999',
-            'mileage' => 5000,
-            'car_type_id' => 1,
-            'fuel_type_id' => 1,
-            'user_id' => 1,
-            'city_id' => 1,
-            'address' => 'Something',
-            'phone' => '999',
-            'description' => null,
-            'published_at' => now(),
-        ];
-//
-//// Create and return record
-//        $car2 = Car::create($carData);
-//
-//// Or create a model, fill with data and then save in DB
-//        $car2 = new Car();
-//        $car2->fill($carData);
-//        $car2->save();
-//
-////  Or
-//        $car3 = new Car($carData);
-//        $car3->save();
-
-//        update
 //        $car = Car::find(1);
-//        $car->price = 14000;
-//        $car->save();
 
-//        $car = Car::updateOrCreate(
-//            ['mileage' => '5000', 'price' => 18000], // where condition
-////            $carData
-//        );
+//        dd($car->primaryImage, $car->features);
 
-//        Car::where('published_at', '=', null)
-//            ->where('user_id', 1)
-//            ->update(['description' => 'lorum ipsum']);
+//        $car->features->abs = 0;
+//        $car->features->save();
 
-//        dd($car);
+//        $car->features->update(['abs' => 1]);
+//        $car->primaryImage->delete();
 
-//        $car = Car::find(1);
-//        $car->delete();
+        $car = Car::find(2);
 
-//        Car::destroy([2, 3]);
-        $deleted = Car::where('published_at', null)
-            ->where('user_id', 1)
-            ->delete();
-
+        $carFeatures = new CarFeatures([
+            'abs' => false,
+            'air_conditioning' => false,
+            'power_windows' => false,
+            'power_door_locks' => false,
+            'cruise_control' => false,
+            'bluetooth_connectivity' => false,
+            'remote_start' => false,
+            'gps_navigation' => false,
+            'heated_seats' => false,
+            'climate_control' => false,
+            'rear_parking_sensors' => false,
+            'leather_seats' => false,
+        ]);
+        $car->features()->save($carFeatures);
+        
         return view('home.index');
     }
 }
